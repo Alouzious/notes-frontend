@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/notes")
+    axios.get(`${API_URL}/api/notes`)
       .then(res => {
         setNotes(res.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.error("Error fetching notes:", err);
         setLoading(false);
       });
   }, []);
@@ -24,7 +26,9 @@ function App() {
       <header className="header">
         <div className="header-content">
           <h1 className="header-title">📝 Notes</h1>
-          <p className="header-subtitle">Explore our collection of thoughts and ideas</p>
+          <p className="header-subtitle">
+            Explore our collection of thoughts and ideas
+          </p>
         </div>
       </header>
 
