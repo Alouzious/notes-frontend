@@ -9,7 +9,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/notes`)
+    axios.get(`${API_URL}/notes`)
       .then(res => {
         setNotes(res.data);
         setLoading(false);
